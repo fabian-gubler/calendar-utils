@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
 
+# TODO:
+    # Show ration between uni and work in percent
+    # Allow arguments for period (e.g. 7d)
+
+
 import arrow
 import os
 from icalendar import Calendar, Event
@@ -12,7 +17,7 @@ period = '1 month'  # or '1 month'
 end_date = '2023-05-26'  # Format: 'YYYY-MM-DD'
 use_period = False  # Set to False to use end_date instead of period
 
-directories = ['/data/nextcloud/.calendars/pers', '/data/nextcloud/.calendars/uni']
+directories = ['/data/nextcloud/.calendars/work', '/data/nextcloud/.calendars/uni']
 
 # Find all .ics files in the specified directories
 directory_ics_files = {}
