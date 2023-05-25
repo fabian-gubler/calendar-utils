@@ -15,7 +15,7 @@ use_period = True  # Set to False to use end_date instead of period
 
 
 directories = ['./calendars/work', './calendars/uni']
-khal_configuration_path = "./config"
+khal_configuration_path = "~/.config/khal/config"
 
 # create demo entries if empty
 create_demo_entries(directories, khal_configuration_path)

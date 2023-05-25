@@ -3,7 +3,7 @@
 import sys
 import subprocess
 
-khal_configuration_path = "./config"
+khal_configuration_path = "~/.config/khal/config"
 
 def create_commute(time: str, destination: str):
     # TODO: Check if already exists
