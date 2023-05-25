@@ -81,7 +81,46 @@ The calpop script is used to populate and automate your calendar entries based o
 The calinfo script allows you to create a summary of your already scheduled events. It shows how much time is still available to schedule and provides a breakdown of how many hours each calendar attribute contributes.
 
 ## Installation
-```nix develop```
 
-If nix is on your system, this allows you to have the same dependencies and versions as
-I do, ensuring compatibility
+Follow the instructions below to set up the Python application on your local machine.
+
+### Prerequisites
+- Python 3.8 or above should be installed on your system. You can verify your Python version by running `python --version` in the terminal.
+- Ensure that `pip` (Python's package installer) is updated. If not, run `python -m pip install --upgrade pip`.
+
+### Steps
+1. Clone the repository to your local machine:
+    ```bash
+    git clone https://github.com/username/repository.git
+    cd repository
+    ```
+
+2. We recommend using a virtual environment for development to avoid any package conflicts. Install `virtualenv` using `pip` if you haven't already:
+    ```bash
+    pip install virtualenv
+    ```
+
+3. Create a virtual environment in the repository folder:
+    ```bash
+    virtualenv venv
+    ```
+
+4. Activate the virtual environment:
+    - On Windows:
+        ```bash
+        .\venv\Scripts\activate
+        ```
+    - On Unix or MacOS:
+        ```bash
+        source venv/bin/activate
+        ```
+
+5. Once the virtual environment is activated (you should see `(venv)` before your terminal prompt), install the required packages using the `requirements.txt` file:
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+Now, you should be ready to run the application!
+
+Note: To deactivate the virtual environment when you're done, simply type `deactivate` in the terminal.
+
