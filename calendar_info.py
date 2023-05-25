@@ -4,6 +4,7 @@ import arrow
 import os
 from icalendar import Calendar, Event
 from datetime import timedelta
+from create_demo_entries import create_demo_entries
 
 # Variables
 working_hours = {'start': '07:00', 'end': '16:00'}
@@ -12,7 +13,15 @@ period = '1 month'  # or '1 month'
 end_date = '2023-05-26'  # Format: 'YYYY-MM-DD'
 use_period = True  # Set to False to use end_date instead of period
 
-directories = ['/data/nextcloud/.calendars/work', '/data/nextcloud/.calendars/uni']
+
+directories = ['./calendars/work', './calendars/uni']
+khal_configuration_path = "./config"
+
+# create demo entries if empty
+create_demo_entries(directories, khal_configuration_path)
+
+import subprocess
+
 
 # Find all .ics files in the specified directories
 directory_ics_files = {}
@@ -84,10 +93,17 @@ def calculate_available_time(working_hours, lunch_hours, period, end_date, use_p
 
 # Calculate and output the total available hours and scheduled hours for each directory
 total_available_hours, _ = calculate_available_time(working_hours, lunch_hours, period, end_date, use_period, all_events)
-print(f'Total available hours in the next {period if use_period else end_date}: {total_available_hours}')
-print()
+
+print("\n---- Calendar Info ----\n")
+
+print(f'Total available hours for the next {period if use_period else end_date}: {total_available_hours} hours\n')
+
+print("---- Calendar Schedule Summary ----\n")
 
 for directory, events in directory_events.items():
     _, scheduled_hours = calculate_available_time(working_hours, lunch_hours, period, end_date, use_period, events)
-    print(f'Directory: {directory}')
-    print(f'  Time already scheduled in the next {period if use_period else end_date}: {scheduled_hours} hours')
+    print(f"Directory: '{directory}'")
+    print(f'  Time already scheduled for the next {period if use_period else end_date}: {scheduled_hours} hours\n')
+
+print("---- End of Report ----\n")
+print(f"You can now use the 'calendar_populate' script to generate time blocks for the available {total_available_hours} hours.\n")

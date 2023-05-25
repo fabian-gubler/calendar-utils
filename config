@@ -1,0 +1,29 @@
+[calendars]
+
+
+[[uni]]
+path = ./calendars/uni
+type = calendar
+color = dark green
+
+[[work]]
+path = ./calendars/work
+type = calendar
+color = brown
+
+[locale]
+timeformat = %H:%M
+dateformat = %d.%m.
+longdateformat = %d.%m.%Y
+datetimeformat =  %d.%m. %H:%M
+longdatetimeformat = %d.%m.%Y %H:%M
+
+[default]
+default_calendar = uni
+show_all_days = True
+timedelta = 1d
+
+[view]
+blank_line_before_day = True
+event_view_always_visible = False
+agenda_event_format = {calendar-color}{start-end-time-style} {title}{repeat-symbol}{reset} {location}{reset}

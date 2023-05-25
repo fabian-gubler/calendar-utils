@@ -1,25 +1,26 @@
 #!/usr/bin/env python3
 
-
 import sys
 import subprocess
+
+khal_configuration_path = "./config"
 
 def create_commute(time: str, destination: str):
     # TODO: Check if already exists
     if destination == '4':
         timespan, from_, arrival = "06:28 07:16", "St. Gallen", "Zurich Airport"
         print(f"Selection: Zurich Airport\n")
-        subprocess.run(["khal", "new", time, timespan, from_, "to", arrival])
+        subprocess.run(["khal", "-c", khal_configuration_path, "new", time, timespan, from_, "to", arrival])
 
 def create_block(time: str, block: str):
     arr = block.split()
     timespan = f"{arr[0]} {arr[1]}"
-    result = subprocess.run(["khal", "at", time, timespan], capture_output=True, text=True)
+    result = subprocess.run(["khal", "-c", khal_configuration_path, "at", time, timespan], capture_output=True, text=True)
 
     if result.stdout.strip() == '':
         # No events for the given time range
-        subprocess.run(["khal", "new", time] + arr)
-        result = subprocess.run(["khal", "at", time, timespan], capture_output=True, text=True)
+        subprocess.run(["khal", "-c", khal_configuration_path, "new", time] + arr)
+        result = subprocess.run(["khal", "-c", khal_configuration_path, "at", time, timespan], capture_output=True, text=True)
 
     lines = result.stdout.splitlines()
     if len(lines) >= 2:
@@ -27,8 +28,8 @@ def create_block(time: str, block: str):
         if existing_entry:
             print(f"Existing: {existing_entry[0]}")
         else:
-            subprocess.run(["khal", "new", time] + arr)
-            result = subprocess.run(["khal", "at", time, timespan], capture_output=True, text=True)
+            subprocess.run(["khal", "-c", khal_configuration_path, "new", time] + arr)
+            result = subprocess.run(["khal", "-c", khal_configuration_path, "at", time, timespan], capture_output=True, text=True)
             print(result.stdout.splitlines()[1])
     else:
         # No events found even after creating a new event
@@ -40,7 +41,7 @@ def main():
     if len(sys.argv) > 1:
         time = sys.argv[1]
     else:
-        time = input("Please indicate time: ")
+        time = input("Please indicate date (e.g. tomorrow): ")
 
     print()
     print("\033[1mIs it a study day or work day?\033[0m")
@@ -60,7 +61,6 @@ def main():
 
         blocks = [
             "07:00 12:00 Study -a uni",
-            "12:15 13:00 Break -a pers",
             "13:15 16:00 Study -a uni",
         ]
 
@@ -80,7 +80,6 @@ def main():
 
         blocks = [
             "07:30 12:00 Work -a work",
-            "12:15 13:00 Break -a pers",
             "13:15 16:00 Work -a work",
         ]
 
@@ -93,7 +92,7 @@ def main():
         sys.exit()
 
     print()
-    subprocess.run(["khal", "list", time])
+    subprocess.run(["khal", "-c", khal_configuration_path, "list", time])
 
 if __name__ == "__main__":
     main()

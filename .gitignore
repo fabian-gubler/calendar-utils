@@ -1,2 +1,4 @@
 .archive/
 venv/
+calendars/
+__pychache__/
