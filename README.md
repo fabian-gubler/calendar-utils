@@ -91,8 +91,8 @@ Follow the instructions below to set up the Python application on your local mac
 ### Steps
 1. Clone the repository to your local machine:
     ```bash
-    git clone https://github.com/username/repository.git
-    cd repository
+    git clone https://github.com/fabian-gubler/calendar-utils.git
+	cd calendar-utils
     ```
 
 2. We recommend using a virtual environment for development to avoid any package conflicts. Install `virtualenv` using `pip` if you haven't already:
