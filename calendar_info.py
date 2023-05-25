@@ -14,11 +14,11 @@ end_date = '2023-05-26'  # Format: 'YYYY-MM-DD'
 use_period = True  # Set to False to use end_date instead of period
 
 
-directories = ['./calendars/work', './calendars/uni']
-khal_configuration_path = "~/.config/khal/config"
+directories = ['/data/nextcloud/.calendars/work', '/data/nextcloud/.calendars/uni']
+khal_configuration_path = "/home/fabian/.config/khal/config"
 
 # create demo entries if empty
-create_demo_entries(directories, khal_configuration_path)
+# create_demo_entries(directories, khal_configuration_path)
 
 import subprocess
 

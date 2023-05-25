@@ -3,7 +3,7 @@
 import sys
 import subprocess
 
-khal_configuration_path = "~/.config/khal/config"
+khal_configuration_path = "/home/fabian/.config/khal/config"
 
 def create_commute(time: str, destination: str):
     # TODO: Check if already exists
@@ -60,8 +60,11 @@ def main():
                 sys.exit()
 
         blocks = [
-            "07:00 12:00 Study -a uni",
-            "13:15 16:00 Study -a uni",
+            "06:30 08:00 Morning Routine -a pers",
+            "08:00 12:00 Conactive -a work",
+            "12:00 13:30 Break -a pers",
+            "13:30 17:30 Conactive -a work",
+            "17:30 18:00 Emails & Planning -a pers",
         ]
 
         print("\n\033[1mEntries\033[0m")
@@ -69,7 +72,7 @@ def main():
             create_block(time, block)
 
     elif day_type == '2':
-        create_commute(time, '4')
+        # create_commute(time, '4')
 
         while True:
             yn = input("\033[1mGenerate Work Entries\033[0m\nyes or no (y/n): ")
@@ -79,8 +82,11 @@ def main():
                 sys.exit()
 
         blocks = [
-            "07:30 12:00 Work -a work",
-            "13:15 16:00 Work -a work",
+            "06:30 08:00 Morning Routine -a pers",
+            "08:00 12:00 Study -a uni",
+            "12:00 13:30 Break -a pers",
+            "13:30 17:30 Study -a uni",
+            "17:30 18:00 Emails & Planning -a pers",
         ]
 
         print("\n\033[1mEntries\033[0m")
