@@ -55,12 +55,12 @@ Ensure that the required Python packages are installed and your virtual environm
 
 1. Populate your calendars using the `calpop` script:
 ```bash
-python calpop.py
+python calendar_populate.py
 ```
 
 2. Generate a summary of your scheduled events and check the available time using the `calinfo` script:
 ```bash
-python calinfo.py
+python calendar_info.py
 ```
 
 Feel free to explore the scripts and customize them to suit your needs.
