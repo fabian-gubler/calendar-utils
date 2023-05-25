@@ -3,15 +3,15 @@
 import arrow
 import os
 from icalendar import Calendar, Event
-from datetime import timedelta
+from datetime import timedelta, datetime, time
 from create_demo_entries import create_demo_entries
 
 # Variables
-working_hours = {'start': '07:00', 'end': '16:00'}
+working_hours = {'start': '08:00', 'end': '17:00'}
 lunch_hours = {'start': '12:00', 'end': '13:00'}
 period = '1 month'  # or '1 month'
-end_date = '2023-05-26'  # Format: 'YYYY-MM-DD'
-use_period = True  # Set to False to use end_date instead of period
+end_date = '2023-06-30'  # Format: 'YYYY-MM-DD'
+use_period = False  # Set to False to use end_date instead of period
 
 
 directories = ['/data/nextcloud/.calendars/work', '/data/nextcloud/.calendars/uni']
@@ -49,7 +49,8 @@ for directory, ics_files in directory_ics_files.items():
 
 # Calculate the available time
 def calculate_available_time(working_hours, lunch_hours, period, end_date, use_period, all_events):
-    now = arrow.utcnow()
+    now = arrow.utcnow().shift(days=1).replace(hour=0, minute=0) if datetime.strptime(arrow.utcnow().format('HH:mm'), '%H:%M').time() > time(int(working_hours['end'].split(':')[0]), int(working_hours['end'].split(':')[1])) else arrow.utcnow().replace(hour=0, minute=0)
+
     if use_period:
         if period == '1 week':
             period_end = now.shift(weeks=1)
@@ -83,6 +84,10 @@ def calculate_available_time(working_hours, lunch_hours, period, end_date, use_p
         event_start = arrow.get(event['DTSTART'].dt)
         event_end = arrow.get(event['DTEND'].dt)
 
+        # Ignore all-day events
+        if event_start.time() == arrow.get('00:00', 'HH:mm').time() and event_end.time() == arrow.get('23:59', 'HH:mm').time():
+            continue
+
         if event_start < period_end and event_end > now:
             event_duration = (event_end - event_start).seconds
             total_busy_time += event_duration
@@ -92,12 +97,10 @@ def calculate_available_time(working_hours, lunch_hours, period, end_date, use_p
     return total_available_time / 3600, total_busy_time / 3600
 
 # Calculate and output the total available hours and scheduled hours for each directory
-total_available_hours, _ = calculate_available_time(working_hours, lunch_hours, period, end_date, use_period, all_events)
+total_available_hours, total_busy_hours = calculate_available_time(working_hours, lunch_hours, period, end_date, use_period, all_events)
 
 print("\n---- Calendar Info ----\n")
-
 print(f'Total available hours for the next {period if use_period else end_date}: {total_available_hours} hours\n')
-
 print("---- Calendar Schedule Summary ----\n")
 
 for directory, events in directory_events.items():
