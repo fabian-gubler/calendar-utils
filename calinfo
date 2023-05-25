@@ -10,7 +10,7 @@ working_hours = {'start': '07:00', 'end': '16:00'}
 lunch_hours = {'start': '12:00', 'end': '13:00'}
 period = '1 month'  # or '1 month'
 end_date = '2023-05-26'  # Format: 'YYYY-MM-DD'
-use_period = False  # Set to False to use end_date instead of period
+use_period = True  # Set to False to use end_date instead of period
 
 directories = ['/data/nextcloud/.calendars/work', '/data/nextcloud/.calendars/uni']
 
