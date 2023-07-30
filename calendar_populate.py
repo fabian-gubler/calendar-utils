@@ -86,7 +86,7 @@ def main():
             "08:00 12:00 Conactive -a work",
             "12:00 13:00 Break -a pers",
             "13:00 17:00 Conactive -a work",
-            "17:00 17:30 Emails & Planning -a pers",
+            "17:00 17:30 Emails & Planning -a work",
         ]
 
         print("\n\033[1mEntries\033[0m")
