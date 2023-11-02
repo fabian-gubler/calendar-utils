@@ -60,11 +60,9 @@ def main():
                 sys.exit()
 
         blocks = [
-            "06:30 08:00 Morning Routine -a pers",
             "08:00 12:00 Study -a uni",
             "12:00 13:00 Break -a pers",
             "13:00 17:00 Study -a uni",
-            "17:00 17:30 Emails & Planning -a pers",
         ]
 
         print("\n\033[1mEntries\033[0m")
@@ -82,11 +80,9 @@ def main():
                 sys.exit()
 
         blocks = [
-            "06:30 08:00 Morning Routine -a pers",
             "08:00 12:00 Conactive -a work",
             "12:00 13:00 Break -a pers",
             "13:00 17:00 Conactive -a work",
-            "17:00 17:30 Emails & Planning -a work",
         ]
 
         print("\n\033[1mEntries\033[0m")

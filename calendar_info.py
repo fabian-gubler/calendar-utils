@@ -10,7 +10,7 @@ from create_demo_entries import create_demo_entries
 working_hours = {'start': '08:00', 'end': '17:00'}
 lunch_hours = {'start': '12:00', 'end': '13:00'}
 period = '1 month'  # or '1 month'
-end_date = '2023-08-30'  # Format: 'YYYY-MM-DD'
+end_date = '2023-11-30'  # Format: 'YYYY-MM-DD'
 use_period = False  # Set to False to use end_date instead of period
 
 
